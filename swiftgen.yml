@@ -1,0 +1,22 @@
+input_dir: SuperApp_PQ
+output_dir: SuperApp_PQ/Resources/Generated
+
+strings:
+  inputs:
+    - Resources/en.lproj/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      output: Strings+Generated.swift
+      params:
+        enumName: L10n
+        lookupFunction: AppLocalizer.localizedString(forKey:table:fallbackValue:)
+        noComments: true
+
+xcassets:
+  inputs:
+    - Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: Assets+Generated.swift
+      params:
+        enumName: Asset

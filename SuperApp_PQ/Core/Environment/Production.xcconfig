@@ -1,0 +1,19 @@
+//
+//  Production.xcconfig
+//  SuperApp_PQ
+//
+//  Created by Phan Quang on 28/5/26.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+APP_ENVIRONMENT = Production
+PRODUCT_NAME = Super App Production
+APP_NAME = Super App
+APP_ICON = AppIconProduction
+MARKETING_VERSION = 1.0.0
+PRODUCT_BUNDLE_IDENTIFIER = com.vn.SuperAPP.Production
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIconProduction
+BASE_URL = https:/$()/api.example.com
+CURRENT_PROJECT_VERSION = 14
