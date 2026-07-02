@@ -98,6 +98,8 @@ Use a skill when the user names it or when the task clearly matches the skill's 
 | `superapp-network` | APIEndpoint, Repository, UseCase, networking, RxSwift wiring |
 | `superapp-figma` | Figma design, components, tokens, screenshot validation |
 | `superapp-preflight` | Readiness check, build, validation before/after coding |
+| `superapp-swiftgen-assets` | Adding colors, images/icons, localized text, and running SwiftGen via Xcode Build (Cmd+B) |
+
 
 Rules:
 - Read the relevant `SKILL.md` before applying.
@@ -138,9 +140,9 @@ Only use sub-agents when the user explicitly asks for delegation, parallel work,
 
 ## Base Classes
 
-`BaseVC<VM>` · `BaseTableVC<VM>` · `BaseCollectionVC<VM>` · `BaseFormVC<VM>` · `BasePagingVC<VM>`
-`BaseBottomSheet` · `BaseWebVC<VM>` · `BaseNavigationController` · `BaseTabBarController`
-`BaseTableCell` · `BaseCollectionCell` · `BaseHeaderView` · `BaseVM` · `BaseCoordinator`
+`BaseViewController<ViewModel>` · `BaseTableViewController<ViewModel>` · `BaseCollectionViewController<ViewModel>` · `BaseFormViewController<ViewModel>` · `BasePagingViewController<ViewModel>`
+`BaseBottomSheet` · `BaseWebViewController<ViewModel>` · `BaseNavigationController` · `BaseTabBarController`
+`BaseTableCell` · `BaseCollectionCell` · `BaseHeaderView` · `BaseViewModel` · `BaseCoordinator`
 `BaseView` · `BaseRepository` · `BaseError` · `ViewState<T>` · `CoordinatorType`
 `Loadable` · `Bindable` · `Reusable`
 
@@ -167,7 +169,7 @@ Only use sub-agents when the user explicitly asks for delegation, parallel work,
 
 ```swift
 //
-//  HomeVC.swift
+//  HomeViewController.swift
 //  SuperApp_PQ
 //
 //  Created by Phan Quang on dd/MM/yy.
@@ -176,35 +178,35 @@ Only use sub-agents when the user explicitly asks for delegation, parallel work,
 
 ## Naming Suffixes
 
-`VC` · `VM` · `Coordinator` · `Service` · `Cell` · `Repo` · `Config`
+`ViewController` · `ViewModel` · `Coordinator` · `Service` · `TableViewCell` · `CollectionViewCell` · `Repository` · `Config`
 
-## UI Component Property Prefix
+## UI Component Property Suffix
 
-Required for all UIKit properties in VC, View, and Cell:
+Required for all UIKit properties in ViewController, View, and Cell:
 
-| UIKit Class | Prefix | Example |
+| UIKit Class | Suffix | Example |
 |---|---|---|
-| `UILabel` | `lbl` | `lblTitle`, `lblPrice` |
-| `UITextField` | `tf` | `tfEmail`, `tfPassword` |
-| `UITextView` | `tv` | `tvDescription`, `tvNotes` |
-| `UIImageView` | `img` | `imgAvatar`, `imgBanner` |
-| `UIStackView` | `st` | `stMain`, `stActions` |
-| `UITableView` | `tb` | `tbFeed`, `tbOrders` |
-| `UICollectionView` | `cl` | `clBanners`, `clGrid` |
-| `UIButton` | `btn` | `btnSubmit`, `btnLogin` |
-| `UIView` (container) | `vw` | `vwHeader`, `vwCard` |
-| `UIScrollView` | `sv` | `svContent` |
-| `UISwitch` | `sw` | `swNotification` |
-| `UISlider` | `sl` | `slVolume` |
-| `UIActivityIndicatorView` | `ai` | `aiLoading` |
-| `UIPageControl` | `pc` | `pcBanner` |
+| `UILabel` | `Label` | `titleLabel`, `priceLabel` |
+| `UITextField` | `TextField` | `emailTextField`, `passwordTextField` |
+| `UITextView` | `TextView` | `descriptionTextView`, `notesTextView` |
+| `UIImageView` | `ImageView` | `avatarImageView`, `bannerImageView` |
+| `UIStackView` | `StackView` | `mainStackView`, `actionsStackView` |
+| `UITableView` | `TableView` | `feedTableView`, `ordersTableView` |
+| `UICollectionView` | `CollectionView` | `bannersCollectionView`, `gridCollectionView` |
+| `UIButton` | `Button` | `submitButton`, `loginButton` |
+| `UIView` (container) | `View` | `headerView`, `cardView` |
+| `UIScrollView` | `ScrollView` | `contentScrollView` |
+| `UISwitch` | `Switch` | `notificationSwitch` |
+| `UISlider` | `Slider` | `volumeSlider` |
+| `UIActivityIndicatorView` | `ActivityIndicator` | `loadingActivityIndicator` |
+| `UIPageControl` | `PageControl` | `bannerPageControl` |
 
-Rules: always append context (`lblTitle` not `lbl`). camelCase. Never full type name (`titleLabel` → `lblTitle`).
+Rules: always append context (`titleLabel` not `title`). camelCase. Never abbreviated names (`lblTitle` → `titleLabel`).
 
 ## MVVM-C Layer Rules
 
-- **VC**: render UI, bind VM outputs, forward user actions. No business logic, no navigation.
-- **VM**: `struct Input` + `struct Output` + `func transform(input:) -> Output`. No UIKit import.
+- **ViewController**: render UI, bind ViewModel outputs, forward user actions. No business logic, no navigation.
+- **ViewModel**: `struct Input` + `struct Output` + `func transform(input:) -> Output`. No UIKit import.
 - **Coordinator**: owns navigation + child lifecycle. No UI/business logic.
 - **UseCase**: owns business action/orchestration. No UIKit, no Alamofire, no storage details.
 - **RepositoryProtocol**: lives in Domain and defines data contract.
@@ -237,7 +239,7 @@ Dependency direction:
 
 ```text
 Presentation → Domain ← Data
-VC → VM → UseCase → RepositoryProtocol ← Repository → Service → DTO
+ViewController → ViewModel → UseCase → RepositoryProtocol ← Repository → Service → DTO
 ```
 
 Rules:
@@ -260,7 +262,7 @@ Rules:
 - Use `Logger.*` — never `print()`.
 - Never force unwrap without justification. Never expose raw `Error` to UI layer.
 
-## BaseVC Lifecycle & Override Points
+## BaseViewController Lifecycle & Override Points
 
 `viewDidLoad()` calls these in order — **override only what you need**:
 
@@ -273,22 +275,22 @@ func setupActions()      // gesture recognizers, target-action
 func reloadData()        // initial data trigger (called once on load)
 ```
 
-**Auto-bound by `BaseVC` — do NOT rebind in subclass:**
+**Auto-bound by `BaseViewController` — do NOT rebind in subclass:**
 - `viewModel.isLoadingRelay` → `showLoading()` / `hideLoading()` (via `Loadable`)
 - `viewModel.errorRelay` → `showError(_:)` alert
 
-**`BaseListVC`** — deprecated alias for `BaseCollectionVC`. New screens must choose `BaseTableVC` or `BaseCollectionVC` explicitly.
+**`BaseListViewController`** — deprecated alias for `BaseCollectionViewController`. New screens must choose `BaseTableViewController` or `BaseCollectionViewController` explicitly.
 
 ---
 
 # 6. Forbidden Practices
 
 - Storyboard / XIB / Massive ViewController
-- API calls directly inside VC
+- API calls directly inside ViewController
 - Hardcoded colors, fonts, strings, spacing
 - `import UIKit` inside ViewModel
 - Nested subscriptions
-- Direct dependency creation inside feature layer (`let service = FooService()` in VC)
+- Direct dependency creation inside feature layer (`let service = FooService()` in ViewController)
 - Global mutable state / Singleton abuse
 - Mixing `async/await` inside RxSwift chains without bridging
 - `print()` for logging
@@ -303,11 +305,11 @@ Step-by-step instructions for common tasks. Read the relevant section before cod
 
 ## Clean Feature
 
-1. Analyze design and choose `BaseVC`, `BaseTableVC`, `BaseCollectionVC`, `BaseFormVC`, or `BasePagingVC`.
+1. Analyze design and choose `BaseViewController`, `BaseTableViewController`, `BaseCollectionViewController`, `BaseFormViewController`, or `BasePagingViewController`.
 2. Create Clean Architecture folders: `Presentation/ Domain/ Data/`.
 3. Keep dependency direction: `Presentation → Domain ← Data`.
-4. Write in order: **Entity → RepositoryProtocol → UseCase → DTO → Mapper → Service → Repository → VM → VC → Coordinator**.
-5. Wire DI: `VM ← UseCase ← RepositoryProtocol ← Repository ← Service`.
+4. Write in order: **Entity → RepositoryProtocol → UseCase → DTO → Mapper → Service → Repository → ViewModel → ViewController → Coordinator**.
+5. Wire DI: `ViewModel ← UseCase ← RepositoryProtocol ← Repository ← Service`.
 6. Add L10n keys and run SwiftGen.
 7. Build Staging.
 
@@ -315,8 +317,8 @@ Step-by-step instructions for common tasks. Read the relevant section before cod
 
 1. Identify the right base class (see Base Classes in section 4).
 2. For non-trivial features, create Clean Architecture folders: `Presentation/ Domain/ Data/`.
-3. Write in order: **Entity → RepositoryProtocol → UseCase → DTO → Mapper → Service → Repository → VM → VC → Coordinator**.
-4. Wire DI: `VM ← UseCase ← RepositoryProtocol ← Repository ← Service`.
+3. Write in order: **Entity → RepositoryProtocol → UseCase → DTO → Mapper → Service → Repository → ViewModel → ViewController → Coordinator**.
+4. Wire DI: `ViewModel ← UseCase ← RepositoryProtocol ← Repository ← Service`.
 5. Register in parent Coordinator.
 6. Add L10n keys to both `.strings` files, run SwiftGen.
 7. Build Staging → report pass/fail.
@@ -328,8 +330,8 @@ Step-by-step instructions for common tasks. Read the relevant section before cod
 3. Create `RepositoryProtocol` in `Domain/Repository`.
 4. Create UseCase in `Domain/UseCase`.
 5. Implement Repository in `Data/Repository`; it calls Service and maps DTO → Entity.
-6. Wire into VM via `AppDependencyContainer`: `VM ← UseCase ← Repository ← Service`.
-7. In VM: call UseCase, map to `Driver`/`Signal`, handle typed errors.
+6. Wire into VM via `AppDependencyContainer`: `ViewModel ← UseCase ← Repository ← Service`.
+7. In ViewModel: call UseCase, map to `Driver`/`Signal`, handle typed errors.
 8. Build Staging.
 
 ## Add Localization Key

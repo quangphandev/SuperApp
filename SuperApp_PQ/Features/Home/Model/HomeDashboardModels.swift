@@ -24,7 +24,7 @@ struct HomeDashboardFocusItem: Hashable {
 struct HomeDashboardNavItem: Hashable {
     let kind: HomeDashboardNavKind
     let title: String
-    let systemImageName: String
+    let icon: AppIcon
     let accent: HomeDashboardAccent
     let isSelected: Bool
 }

@@ -37,7 +37,7 @@ final class HomeHeroCell: BaseCollectionCell {
 
     private let progressCardView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColor.surface
+        view.backgroundColor = AppColor.accentSurface
         view.layer.cornerRadius = AppRadius.card
         view.layer.borderWidth = 1.5
         view.layer.borderColor = AppColor.accent.cgColor

@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp Preflight"
+  short_description: "Build readiness check, SwiftGen, validation"
+  default_prompt: "Use $superapp-preflight to check SuperApp_PQ readiness before or after coding."

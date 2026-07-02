@@ -1,100 +1,89 @@
 # 📐 Bộ Quy Tắc Đặt Tên (Naming Convention) — SuperApp_PQ
 
 > Tài liệu này định nghĩa bộ quy tắc đặt tên file, class, và thư mục cho toàn bộ dự án iOS `SuperApp_PQ`.
-> Mục tiêu: nhất quán, ngắn gọn, dễ đọc và dễ tìm kiếm.
+> Mục tiêu: nhất quán, rõ ràng, dễ đọc, dễ tìm kiếm và tuân thủ chặt chẽ Swift API Design Guidelines.
 
 ---
 
-## 1. Bảng Viết Tắt Chuẩn (Abbreviation Table)
+## 1. Bảng Viết Tắt & Hậu Tố Chuẩn (Abbreviation & Suffix Table)
 
-| Từ đầy đủ | Viết tắt | Ví dụ |
+| Từ đầy đủ | Viết tắt / Hậu tố | Ví dụ |
 |---|---|---|
-| `ViewController` | `VC` | `HomeVC`, `LoginVC` |
-| `ViewModel` | `VM` | `HomeVM`, `LoginVM` |
+| `ViewController` | `ViewController` (không viết tắt) | `HomeViewController`, `LoginViewController` |
+| `ViewModel` | `ViewModel` (không viết tắt) | `HomeViewModel`, `LoginViewModel` |
 | `View` | `View` | `AvatarView`, `CardView` |
 | `Model` | `Model` | `UserModel`, `ProductModel` |
 | `Manager` | `Manager` | `AuthManager`, `CacheManager` |
 | `Service` | `Service` | `UserService`, `PaymentService` |
-| `Repository` | `Repo` | `UserRepo`, `OrderRepo` |
+| `Repository` | `Repository` | `UserRepository`, `OrderRepository` |
 | `Coordinator` | `Coordinator` | `AppCoordinator`, `HomeCoordinator` |
 | `Router` | `Router` | `HomeRouter`, `AppRouter` |
-| `Cell` (UITableViewCell / UICollectionViewCell) | `Cell` | `ProductCell`, `UserCell` |
-| `Header` (section header) | `Header` | `CartHeader`, `OrderHeader` |
-| `Footer` (section footer) | `Footer` | `CartFooter` |
+| `UITableViewCell` | `TableViewCell` | `ProductTableViewCell`, `UserTableViewCell` |
+| `UICollectionViewCell` | `CollectionViewCell` | `ProductCollectionViewCell`, `UserCollectionViewCell` |
+| `Header` (section header) | `HeaderView` | `CartHeaderView`, `OrderHeaderView` |
+| `Footer` (section footer) | `FooterView` | `CartFooterView` |
 | `Configuration` | `Config` | `AppConfig`, `NetworkConfig` |
 | `Extension` | `+` (suffix trong tên file) | `UIView+Shadow.swift` |
-| `Protocol` | `Protocol` | `UserProtocol` hoặc `Userable` |
+| `Protocol` | `Protocol` | `UserRepositoryProtocol` |
 | `Enum` | `Type` hoặc tên rõ ràng | `OrderStatusType`, `PaymentMethod` |
 | `Builder` | `Builder` | `AlertBuilder`, `RequestBuilder` |
 | `Handler` | `Handler` | `DeepLinkHandler`, `ErrorHandler` |
 | `Helper` | `Helper` | `DateHelper`, `StringHelper` |
 | `Constant` | `Constant` | `AppConstant`, `APIConstant` |
-| `UILabel` | `lbl` | `lblTitle`, `lblSubtitle` |
-| `UITextField` | `tf` | `tfEmail`, `tfPassword` |
-| `UITextView` | `tv` | `tvDescription`, `tvNotes` |
-| `UIImageView` | `img` | `imgAvatar`, `imgBanner` |
-| `UIStackView` | `st` | `stMain`, `stActions` |
-| `UITableView` | `tb` | `tbFeed`, `tbSettings` |
-| `UICollectionView` | `cl` | `clBanners`, `clProducts` |
-| `UIButton` | `btn` | `btnSubmit`, `btnCancel` |
-| `UIView` (container) | `vw` | `vwHeader`, `vwCard` |
-| `UIScrollView` | `sv` | `svContent`, `svMain` |
-| `UISwitch` | `sw` | `swNotification`, `swDarkMode` |
-| `UISlider` | `sl` | `slVolume`, `slBrightness` |
-| `UIActivityIndicatorView` | `ai` | `aiLoading` |
-| `UIPageControl` | `pc` | `pcBanner`, `pcOnboarding` |
 
 ---
 
-## 2. Quy Tac Dat Ten File
+## 2. Quy Tắc Đặt Tên File
 
-Format chung: `[Ten chuc nang] + [Loai file]`
+Format chung: `[Tên chức năng] + [Loại file]`
 
-| File | Khong dung | Nen dung |
+| File | Không dùng | Nên dùng |
 |---|---|---|
-| View Controller | `HomeViewController.swift` | `HomeVC.swift` |
-| ViewModel | `HomeViewModel.swift` | `HomeVM.swift` |
+| View Controller | `HomeVC.swift` | `HomeViewController.swift` |
+| ViewModel | `HomeVM.swift` | `HomeViewModel.swift` |
 | Custom View | `CustomAvatarView.swift` | `AvatarView.swift` |
-| Table Cell | `ProductTableViewCell.swift` | `ProductCell.swift` |
-| Repository | `UserRepository.swift` | `UserRepo.swift` |
+| Table Cell | `ProductCell.swift`, `ProductVC.swift` | `ProductTableViewCell.swift` |
+| Collection Cell | `ProductCell.swift` | `ProductCollectionViewCell.swift` |
+| Repository | `UserRepo.swift` | `UserRepository.swift` |
 | Config | `NetworkConfiguration.swift` | `NetworkConfig.swift` |
 | Extension | `UIViewExtension.swift` | `UIView+Shadow.swift` |
 
 ---
 
-## 3. Quy Tac Dat Ten Class / Struct / Enum
+## 3. Quy Tắc Đặt Tên Class / Struct / Enum
 
-Format: `[Ten chuc nang][Viet tat loai]`
+Format: `[Tên chức năng][Viết rõ loại]` (PascalCase)
 
 ```swift
-// Dung
-class HomeVC: UIViewController { }
-class HomeVM { }
-struct UserModel { }
-class ProductCell: UITableViewCell { }
-
-// Sai
+// Đúng
 class HomeViewController: UIViewController { }
 class HomeViewModel { }
+struct UserModel { }
+class ProductTableViewCell: UITableViewCell { }
+
+// Sai
+class HomeVC: UIViewController { }
+class HomeVM { }
+class ProductCell: UITableViewCell { }
 class ProductTableViewCell: UITableViewCell { }
 ```
 
 ---
 
-## 4. Cau Truc Thu Muc (SuperApp_PQ)
+## 4. Cấu Trúc Thư Mục (SuperApp_PQ)
 
 ```
 SuperApp_PQ/
   Features/
     Home/
-      View/         HomeVC.swift
-      ViewModel/    HomeVM.swift
+      View/         HomeViewController.swift
+      ViewModel/    HomeViewModel.swift
       Coordinator/  HomeCoordinator.swift
       Model/        HomeFeatureItem.swift
       Service/      HomeService.swift
       Components/   HomeFeatureView.swift
   Core/
-    Base/           BaseVC, BaseVM, BaseTableVC, ...
+    Base/           BaseViewController, BaseViewModel, BaseTableViewController, ...
     Network/        APIEndpoint, APIClient, NetworkError
     Localization/   AppLanguage, AppLocalizer
   DesignSystem/
@@ -108,9 +97,9 @@ SuperApp_PQ/
 
 ---
 
-## 5. Quy Tac Dat Ten Extension (File)
+## 5. Quy Tắc Đặt Tên Extension (File)
 
-Format: `[Class goc]+[Chuc nang].swift`
+Format: `[Class gốc]+[Chức năng].swift`
 
 ```
 UIView+Shadow.swift
@@ -121,14 +110,14 @@ Date+Format.swift
 
 ---
 
-## 6. Quy Tac Dat Ten Protocol
+## 6. Quy Tắc Đặt Tên Protocol
 
 ```swift
-// Hau to Protocol (cho abstraction layer lon)
-protocol UserServiceProtocol { }
-protocol FooCoordinating { }
+// Hậu tố Protocol (cho abstraction layer lớn)
+protocol UserRepositoryProtocol { }
+protocol HomeCoordinating { }
 
-// Hau to -able (delegate / utility)
+// Hậu tố -able (delegate / utility)
 protocol Loadable { }
 protocol Bindable { }
 protocol Reusable { }
@@ -136,9 +125,9 @@ protocol Reusable { }
 
 ---
 
-## 7. Quy Tac Dat Ten Enum
+## 7. Quy Tắc Đặt Tên Enum
 
-Format: `[Ten chuc nang]Type` hoac `[Ten chuc nang]State`
+Format: `[Tên chức năng]Type` hoặc `[Tên chức năng]State`
 
 ```swift
 enum OrderStatusType { case pending, processing, completed, cancelled }
@@ -148,112 +137,112 @@ enum HomeState { case loading, loaded, error }
 
 ---
 
-## 8. Quy Tac Bo Sung
+## 8. Quy Tắc Bổ Sung
 
 - **PascalCase** cho file, class, struct, enum, protocol.
-- **camelCase** cho bien, ham, property.
-- **Khong dung prefix** kieu Objective-C (`PQ`, `SA`...).
-- **Khong viet tat ten nghiep vu**, chi viet tat loai file (VC, VM, Repo...).
-- Ten phai dien dat dung chuc nang: `ProductListVC` khong phai `ListVC`.
+- **camelCase** cho biến, hàm, property.
+- **Không dùng prefix** kiểu Objective-C (`PQ`, `SA`...).
+- **Không viết tắt tên nghiệp vụ hay loại file chính** (VC $\rightarrow$ ViewController, VM $\rightarrow$ ViewModel).
+- Tên phải diễn đạt đúng chức năng: `ProductListViewController` không phải `ListViewController`.
 
 ---
 
-## 9. Quy Tac Dat Ten UI Component (Property Prefix)
+## 9. Quy Tắc Đặt Tên UI Component (Property Suffix)
 
-Khi khai bao UI component la property cua ViewController, View, hoac Cell, **bat buoc** dung prefix viet tat:
+Khi khai báo UI component là property của ViewController, View, hoặc Cell, **bắt buộc** dùng hậu tố là tên loại Component đầy đủ (camelCase):
 
-| UIKit Class | Prefix | Vi du |
+| UIKit Class | Hậu tố | Ví dụ |
 |---|---|---|
-| `UILabel` | `lbl` | `lblTitle`, `lblSubtitle`, `lblPrice` |
-| `UITextField` | `tf` | `tfEmail`, `tfPassword`, `tfSearch` |
-| `UITextView` | `tv` | `tvDescription`, `tvNotes`, `tvBio` |
-| `UIImageView` | `img` | `imgAvatar`, `imgBanner`, `imgIcon` |
-| `UIStackView` | `st` | `stMain`, `stActions`, `stInfo` |
-| `UITableView` | `tb` | `tbFeed`, `tbSettings`, `tbOrders` |
-| `UICollectionView` | `cl` | `clBanners`, `clProducts`, `clGrid` |
-| `UIButton` | `btn` | `btnSubmit`, `btnCancel`, `btnLogin` |
-| `UIView` (container) | `vw` | `vwHeader`, `vwCard`, `vwSeparator` |
-| `UIScrollView` | `sv` | `svContent`, `svMain` |
-| `UISwitch` | `sw` | `swNotification`, `swDarkMode` |
-| `UISlider` | `sl` | `slVolume`, `slBrightness` |
-| `UIActivityIndicatorView` | `ai` | `aiLoading` |
-| `UIPageControl` | `pc` | `pcBanner`, `pcOnboarding` |
+| `UILabel` | `Label` | `titleLabel`, `subtitleLabel`, `priceLabel` |
+| `UITextField` | `TextField` | `emailTextField`, `passwordTextField`, `searchTextField` |
+| `UITextView` | `TextView` | `descriptionTextView`, `notesTextView`, `bioTextView` |
+| `UIImageView` | `ImageView` | `avatarImageView`, `bannerImageView`, `iconImageView` |
+| `UIStackView` | `StackView` | `mainStackView`, `actionsStackView`, `infoStackView` |
+| `UITableView` | `TableView` | `feedTableView`, `settingsTableView`, `ordersTableView` |
+| `UICollectionView` | `CollectionView` | `bannersCollectionView`, `productsCollectionView` |
+| `UIButton` | `Button` | `submitButton`, `cancelButton`, `loginButton` |
+| `UIView` (container) | `View` | `headerView`, `cardView`, `separatorView` |
+| `UIScrollView` | `ScrollView` | `contentScrollView`, `mainScrollView` |
+| `UISwitch` | `Switch` | `notificationSwitch`, `darkModeSwitch` |
+| `UISlider` | `Slider` | `volumeSlider`, `brightnessSlider` |
+| `UIActivityIndicatorView` | `ActivityIndicator` | `loadingActivityIndicator` |
+| `UIPageControl` | `PageControl` | `bannerPageControl`, `onboardingPageControl` |
 
-### Vi du - Man hinh Login (LoginVC)
+### Ví dụ - Màn hình Login (LoginViewController)
 
 ```swift
-final class LoginVC: BaseVC<LoginVM> {
+final class LoginViewController: BaseViewController<LoginViewModel> {
 
     // MARK: - UI Components
 
-    private let imgLogo: UIImageView = {
+    private let logoImageView: UIImageView = {
         let img = UIImageView()
         img.contentMode = .scaleAspectFit
         return img
     }()
 
-    private let lblTitle: UILabel = {
+    private let titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = AppFont.largeTitle
         lbl.textColor = AppColor.textPrimary
         return lbl
     }()
 
-    private let lblSubtitle: UILabel = {
+    private let subtitleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = AppFont.body
         lbl.textColor = AppColor.textSecondary
         return lbl
     }()
 
-    private let tfEmail: AppTextField = {
+    private let emailTextField: AppTextField = {
         let tf = AppTextField()
         tf.placeholder = L10n.Login.emailPlaceholder
         return tf
     }()
 
-    private let tfPassword: AppTextField = {
+    private let passwordTextField: AppTextField = {
         let tf = AppTextField()
         tf.placeholder = L10n.Login.passwordPlaceholder
         tf.isSecureTextEntry = true
         return tf
     }()
 
-    private let stFields: UIStackView = {
+    private let fieldsStackView: UIStackView = {
         let st = UIStackView()
         st.axis = .vertical
         st.spacing = AppSpacing.medium
         return st
     }()
 
-    private let btnLogin: AppButton = {
+    private let loginButton: AppButton = {
         AppButton(title: L10n.Login.loginButton, style: .primary, size: .large)
     }()
 
-    private let btnForgotPassword: AppButton = {
+    private let forgotPasswordButton: AppButton = {
         AppButton(title: L10n.Login.forgotPassword, style: .ghost, size: .medium)
     }()
 }
 ```
 
-### Vi du - Cell
+### Ví dụ - Cell
 
 ```swift
-final class ProductCell: BaseCollectionCell {
-    private let imgThumbnail: UIImageView = { ... }()
-    private let lblName: UILabel = { ... }()
-    private let lblPrice: UILabel = { ... }()
-    private let btnAddToCart: AppButton = { ... }()
+final class ProductCollectionViewCell: BaseCollectionCell {
+    private let thumbnailImageView: UIImageView = { ... }()
+    private let nameLabel: UILabel = { ... }()
+    private let priceLabel: UILabel = { ... }()
+    private let addToCartButton: AppButton = { ... }()
 }
 ```
 
-### Vi du - MVVM-C folder (Profile Feature)
+### Ví dụ - MVVM-C folder (Profile Feature)
 
 ```
 Features/
   Profile/
-    View/         ProfileVC.swift
-    ViewModel/    ProfileVM.swift
+    View/         ProfileViewController.swift
+    ViewModel/    ProfileViewModel.swift
     Coordinator/  ProfileCoordinator.swift
     Model/        ProfileModel.swift
     Service/      ProfileService.swift
@@ -261,27 +250,27 @@ Features/
 ```
 
 ```swift
-// ProfileVC.swift
-final class ProfileVC: BaseVC<ProfileVM> {
-    private let imgAvatar: UIImageView = { ... }()
-    private let lblName: UILabel = { ... }()
-    private let lblBio: UILabel = { ... }()
-    private let tbPosts: UITableView = { ... }()   // Dung: co context
-    private let btnEdit: AppButton = { ... }()
-    private let stHeader: UIStackView = { ... }()
+// ProfileViewController.swift
+final class ProfileViewController: BaseViewController<ProfileViewModel> {
+    private let avatarImageView: UIImageView = { ... }()
+    private let nameLabel: UILabel = { ... }()
+    private let bioLabel: UILabel = { ... }()
+    private let postsTableView: UITableView = { ... }()
+    private let editButton: AppButton = { ... }()
+    private let headerStackView: UIStackView = { ... }()
 }
 ```
 
-### Quy tac bat buoc
+### Quy tắc bắt buộc
 
-- **Luon them context name sau prefix**: `lblTitle` khong phai `lbl`.
-- **camelCase**: `lblUserName` khong phai `lbl_user_name`.
-- **Khong dung type day du**: `titleLabel` → `lblTitle`, `emailTextField` → `tfEmail`.
-- Ap dung cho ca **stored property** va **local variable** trong `setupViews()`.
+- **Luôn thêm hậu tố đầy đủ**: `titleLabel` không phải `title`, `loginButton` không phải `login`.
+- **camelCase**: `userNameLabel` không phải `user_name_label`.
+- **Không viết tắt**: `titleLabel` $\rightarrow$ không dùng `titleLbl`, `emailTextField` $\rightarrow$ không dùng `emailTF`.
+- Áp dụng cho cả **stored property** và **local variable** trong `setupViews()`.
 
 ---
 
-## 10. Quy Tac File Header Comment
+## 10. Quy Tắc File Header Comment
 
 ```swift
 //
@@ -292,24 +281,18 @@ final class ProfileVC: BaseVC<ProfileVM> {
 //
 ```
 
-| Truong | Quy tac | Vi du |
+| Trường | Quy tắc | Ví dụ |
 |---|---|---|
-| **Ngay** | `dd/MM/yy` | `22/5/26` |
-| **Tac gia** | Ten day du | `Phan Quang` |
-| **Ngay tao** | Ngay thuc te tao file | Tu dong theo ngay hien tai |
+| **Ngày** | `dd/MM/yy` | `22/05/26` |
+| **Tác giả** | Tên đầy đủ | `Phan Quang` |
+| **Ngày tạo** | Ngày thực tế tạo file | Tự động theo ngày hiện tại |
 
 ```swift
-// Dung
+// Đúng
 //
-//  HomeVC.swift
+//  HomeViewController.swift
 //  SuperApp_PQ
 //
-//  Created by Phan Quang on 22/5/26.
+//  Created by Phan Quang on 22/05/26.
 //
-
-// Sai - thieu header, hoac de nguyen ten mac dinh "ViewController.swift"
 ```
-
-> [!TIP]
-> Xcode tu dong dien ngay tao file. Kiem tra ten file trong header khop voi ten file thuc te.
-> Ten tac gia lay tu macOS System Settings > Users & Groups > Full Name.

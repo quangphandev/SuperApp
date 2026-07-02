@@ -31,7 +31,7 @@ extension Reactive where Base: UITextField {
     /// A `Driver` that emits the whitespace-trimmed text on every keystroke.
     /// Emits empty string `""` when the field is cleared.
     ///
-    /// Usage: bind to VM for form validation that allows empty input.
+    /// Usage: bind to ViewModel for form validation that allows empty input.
     var textTrimmed: Driver<String> {
         base.rx.text
             .orEmpty

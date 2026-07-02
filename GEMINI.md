@@ -61,6 +61,8 @@ Read the relevant `SKILL.md` before applying. Announce the skill in one sentence
 | `superapp-network` | APIEndpoint, Repository, UseCase network wiring |
 | `superapp-figma` | Figma design, Luma tokens, screenshot validation |
 | `superapp-preflight` | Build readiness, validation before/after changes |
+| `superapp-swiftgen-assets` | Add colors, images, icons, localized strings, build via Xcode (Cmd+B) |
+
 
 Each skill lives in `.agents/skills/<name>/SKILL.md` and may have a `references/` folder with concrete code examples.
 

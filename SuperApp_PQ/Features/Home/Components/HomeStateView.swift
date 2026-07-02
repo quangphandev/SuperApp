@@ -304,7 +304,7 @@ final class HomeStateView: UIView {
             iconImageView.isHidden = true
             loadingIndicatorView.startAnimating()
         } else {
-            iconImageView.image = UIImage(systemName: content.iconSystemName)
+            iconImageView.image = content.icon.templateImage
             iconImageView.isHidden = false
             loadingIndicatorView.stopAnimating()
         }

@@ -131,7 +131,7 @@ private final class HomeBottomNavItemView: UIControl {
 
     func configure(with item: HomeDashboardNavItem) {
         let tintColor = item.isSelected ? item.accent.color : AppColor.textSecondary
-        iconImageView.image = UIImage(systemName: item.systemImageName)
+        iconImageView.image = item.icon.templateImage
         iconImageView.tintColor = tintColor
         titleLabel.text = item.title
         titleLabel.textColor = tintColor

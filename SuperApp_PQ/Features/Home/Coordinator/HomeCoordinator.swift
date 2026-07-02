@@ -10,6 +10,9 @@ import UIKit
 protocol HomeCoordinating: AnyObject {
     func showDetail()
     func showDebugInfo()
+    func showEnglish()
+    func showFit()
+    func showTodo()
 }
 
 final class HomeCoordinator: BaseCoordinator, HomeCoordinating {
@@ -31,8 +34,7 @@ final class HomeCoordinator: BaseCoordinator, HomeCoordinating {
     // MARK: - CoordinatorType
 
     override func start() {
-        let viewController = HomeVC(
-            viewModel: dependencyContainer.makeHomeVM(),
+        let viewController = dependencyContainer.makeHomeVC(
             coordinator: self
         )
         navigationController.setViewControllers([viewController], animated: false)
@@ -41,18 +43,38 @@ final class HomeCoordinator: BaseCoordinator, HomeCoordinating {
     // MARK: - HomeCoordinating
 
     func showDetail() {
-        let viewController = HomeDetailVC(
+        let viewController = HomeDetailViewController(
             viewModel: dependencyContainer.makeHomeDetailVM()
         )
         navigationController.pushViewController(viewController, animated: true)
     }
 
     func showDebugInfo() {
-        let viewController = DebugInfoVC(
+        let viewController = DebugInfoViewController(
             viewModel: dependencyContainer.makeDebugInfoVM()
         )
         let navController = UINavigationController(rootViewController: viewController)
         navigationController.present(navController, animated: true)
     }
-}
 
+    func showEnglish() {
+        removeAllChildren()
+        let englishCoordinator = dependencyContainer.makeEnglishCoordinator(navigationController: navigationController)
+        addChild(englishCoordinator)
+        englishCoordinator.start()
+    }
+
+    func showFit() {
+        removeAllChildren()
+        let fitCoordinator = dependencyContainer.makeFitCoordinator(navigationController: navigationController)
+        addChild(fitCoordinator)
+        fitCoordinator.start()
+    }
+
+    func showTodo() {
+        removeAllChildren()
+        let todoCoordinator = dependencyContainer.makeTodoCoordinator(navigationController: navigationController)
+        addChild(todoCoordinator)
+        todoCoordinator.start()
+    }
+}

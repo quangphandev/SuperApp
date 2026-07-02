@@ -6,12 +6,21 @@
 	<string>$(APP_ENVIRONMENT)</string>
 	<key>BASE_URL</key>
 	<string>$(BASE_URL)</string>
-	<key>CFBundleDisplayName</key>
-	<string>$(APP_NAME)</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>GOOGLE_MAPS_API_KEY</key>
+	<string>$(GOOGLE_MAPS_API_KEY)</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.vn.SuperAPP.luma</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>luma</string>
+			</array>
+		</dict>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -29,5 +38,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 </dict>
 </plist>

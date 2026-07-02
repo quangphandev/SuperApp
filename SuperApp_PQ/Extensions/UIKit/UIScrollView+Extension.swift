@@ -70,7 +70,7 @@ extension UIScrollView {
     /// Adjusts the bottom content inset when the keyboard appears/disappears.
     /// Call `stopObservingKeyboard()` in `deinit` or `viewDidDisappear`.
     ///
-    /// Usage in `BaseFormVC`:
+    /// Usage in `BaseFormViewController`:
     /// ```swift
     /// scrollView.observeKeyboard()
     /// ```

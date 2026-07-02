@@ -29,10 +29,10 @@ enum Toast {
 
         var icon: UIImage? {
             switch self {
-            case .success: return UIImage(systemName: "checkmark.circle.fill")
-            case .warning: return UIImage(systemName: "exclamationmark.triangle.fill")
-            case .error:   return UIImage(systemName: "xmark.circle.fill")
-            case .info:    return UIImage(systemName: "info.circle.fill")
+            case .success: return AppIcon.checkmarkCircleFill.image
+            case .warning: return AppIcon.warningCircleFill.image
+            case .error:   return AppIcon.xmarkCircleFill.image
+            case .info:    return AppIcon.infoCircleFill.image
             }
         }
 

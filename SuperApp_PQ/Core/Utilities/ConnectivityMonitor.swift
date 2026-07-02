@@ -14,7 +14,7 @@ import RxSwift
 /// Exposes an `isConnected: Driver<Bool>` stream that emits whenever
 /// the network state changes. Designed as a singleton for app-wide use.
 ///
-/// Usage (in AppCoordinator or BaseVM):
+/// Usage (in AppCoordinator or BaseViewModel):
 /// ```swift
 /// ConnectivityMonitor.shared.isConnected
 ///     .drive(onNext: { isConnected in
@@ -76,7 +76,7 @@ final class ConnectivityMonitor {
     }
 }
 
-// MARK: - BaseVM Integration
+// MARK: - BaseViewModel Integration
 
 extension ConnectivityMonitor {
 

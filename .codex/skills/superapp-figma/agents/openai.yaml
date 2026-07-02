@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp Figma"
+  short_description: "Luma design, components, tokens, screenshot validation"
+  default_prompt: "Use $superapp-figma to design, redesign, or validate a Figma screen for SuperApp_PQ."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp iOS Feature"
+  short_description: "MVVM-C + Clean Architecture feature wiring"
+  default_prompt: "Use $superapp-ios-feature to build or modify a SuperApp_PQ iOS feature using MVVM-C, Clean Architecture, RxSwift, and programmatic UIKit."

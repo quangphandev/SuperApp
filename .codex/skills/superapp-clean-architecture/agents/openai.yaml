@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp Clean Architecture"
+  short_description: "Domain, Data, Presentation boundaries"
+  default_prompt: "Use $superapp-clean-architecture to design or implement a Clean Architecture feature in SuperApp_PQ."

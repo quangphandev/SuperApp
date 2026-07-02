@@ -14,9 +14,9 @@ extension HomeDashboardAccent {
         case .home:
             return AppColor.accent
         case .english:
-            return AppColor.accentSecondary
+            return AppColor.accent
         case .fit:
-            return AppColor.success
+            return AppColor.accentSecondary
         case .todo:
             return AppColor.warning
         case .muted:

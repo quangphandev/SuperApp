@@ -10,10 +10,9 @@
 
 APP_ENVIRONMENT = Staging
 PRODUCT_NAME = Super App Staging
-APP_NAME = Super App Staging
-APP_ICON = AppIconStaging
 MARKETING_VERSION = 1.0.0
 PRODUCT_BUNDLE_IDENTIFIER = com.vn.SuperAPP.Staging
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIconStaging
 BASE_URL = https:/$()/staging-api.example.com
+GOOGLE_MAPS_API_KEY =
 CURRENT_PROJECT_VERSION = 14

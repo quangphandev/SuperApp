@@ -27,12 +27,27 @@ extension UICollectionView {
         register(cellType, forCellWithReuseIdentifier: cellType.reuseIdentifier)
     }
 
-    func dequeue<T: UICollectionViewCell>(_ cellType: T.Type, for indexPath: IndexPath) -> T where T: Reusable {
+    func registerCells(_ cellTypes: (UICollectionViewCell & Reusable).Type...) {
+        cellTypes.forEach { cellType in
+            register(cellType, forCellWithReuseIdentifier: cellType.reuseIdentifier)
+        }
+    }
+
+    func dequeue<T: UICollectionViewCell>(
+        _ cellType: T.Type,
+        for indexPath: IndexPath,
+        file: StaticString = #fileID,
+        line: UInt = #line
+    ) -> T where T: Reusable {
         guard let cell = dequeueReusableCell(
             withReuseIdentifier: cellType.reuseIdentifier,
             for: indexPath
         ) as? T else {
-            fatalError("❌ Could not dequeue cell: \(cellType.reuseIdentifier)")
+            ReuseError.fail(
+                "Could not dequeue collection cell: \(cellType.reuseIdentifier)",
+                file: file,
+                line: line
+            )
         }
         return cell
     }
@@ -45,13 +60,22 @@ extension UICollectionView {
         )
     }
 
-    func dequeueHeader<T: UICollectionReusableView>(_ viewType: T.Type, for indexPath: IndexPath) -> T where T: Reusable {
+    func dequeueHeader<T: UICollectionReusableView>(
+        _ viewType: T.Type,
+        for indexPath: IndexPath,
+        file: StaticString = #fileID,
+        line: UInt = #line
+    ) -> T where T: Reusable {
         guard let header = dequeueReusableSupplementaryView(
             ofKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: viewType.reuseIdentifier,
             for: indexPath
         ) as? T else {
-            fatalError("❌ Could not dequeue header: \(viewType.reuseIdentifier)")
+            ReuseError.fail(
+                "Could not dequeue collection header: \(viewType.reuseIdentifier)",
+                file: file,
+                line: line
+            )
         }
         return header
     }
@@ -65,12 +89,27 @@ extension UITableView {
         register(cellType, forCellReuseIdentifier: cellType.reuseIdentifier)
     }
 
-    func dequeue<T: UITableViewCell>(_ cellType: T.Type, for indexPath: IndexPath) -> T where T: Reusable {
+    func registerCells(_ cellTypes: (UITableViewCell & Reusable).Type...) {
+        cellTypes.forEach { cellType in
+            register(cellType, forCellReuseIdentifier: cellType.reuseIdentifier)
+        }
+    }
+
+    func dequeue<T: UITableViewCell>(
+        _ cellType: T.Type,
+        for indexPath: IndexPath,
+        file: StaticString = #fileID,
+        line: UInt = #line
+    ) -> T where T: Reusable {
         guard let cell = dequeueReusableCell(
             withIdentifier: cellType.reuseIdentifier,
             for: indexPath
         ) as? T else {
-            fatalError("❌ Could not dequeue cell: \(cellType.reuseIdentifier)")
+            ReuseError.fail(
+                "Could not dequeue table cell: \(cellType.reuseIdentifier)",
+                file: file,
+                line: line
+            )
         }
         return cell
     }
@@ -79,12 +118,32 @@ extension UITableView {
         register(viewType, forHeaderFooterViewReuseIdentifier: viewType.reuseIdentifier)
     }
 
-    func dequeueHeaderFooter<T: UITableViewHeaderFooterView>(_ viewType: T.Type) -> T where T: Reusable {
+    func dequeueHeaderFooter<T: UITableViewHeaderFooterView>(
+        _ viewType: T.Type,
+        file: StaticString = #fileID,
+        line: UInt = #line
+    ) -> T where T: Reusable {
         guard let view = dequeueReusableHeaderFooterView(
             withIdentifier: viewType.reuseIdentifier
         ) as? T else {
-            fatalError("❌ Could not dequeue header/footer: \(viewType.reuseIdentifier)")
+            ReuseError.fail(
+                "Could not dequeue table header/footer: \(viewType.reuseIdentifier)",
+                file: file,
+                line: line
+            )
         }
         return view
+    }
+}
+
+private enum ReuseError {
+
+    static func fail(
+        _ message: String,
+        file: StaticString,
+        line: UInt
+    ) -> Never {
+        Logger.error(message, category: .ui, file: file, line: line)
+        fatalError(message, file: file, line: line)
     }
 }

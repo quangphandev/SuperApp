@@ -7,6 +7,10 @@
 
 import UIKit
 
+#if canImport(GoogleMaps)
+import GoogleMaps
+#endif
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            let url = URL(string: urlString) {
             NetworkConfig.baseURL = url
         }
+
+#if canImport(GoogleMaps)
+        if let apiKey = GoogleMapsConfig.apiKey {
+            GMSServices.provideAPIKey(apiKey)
+        }
+#endif
+
         return true
     }
 

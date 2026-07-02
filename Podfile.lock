@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.11.2)
+  - GoogleMaps (9.4.0):
+    - GoogleMaps/Maps (= 9.4.0)
+  - GoogleMaps/Maps (9.4.0)
   - RxBlocking (6.9.0):
     - RxSwift (= 6.9.0)
   - RxCocoa (6.9.0):
@@ -15,6 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 5.9)
+  - GoogleMaps
   - RxBlocking (~> 6.7)
   - RxCocoa (~> 6.7)
   - RxSwift (~> 6.7)
@@ -25,6 +29,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GoogleMaps
     - RxBlocking
     - RxCocoa
     - RxRelay
@@ -35,6 +40,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 400275dd1c6d87d95a041861d2a59da4b520a203
+  GoogleMaps: 0608099d4870cac8754bdba9b6953db543432438
   RxBlocking: 5d2b26d019b6ba9eb3f58638611f124609c44822
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
@@ -43,6 +49,6 @@ SPEC CHECKSUMS:
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
   SwiftGen: 4993cbf71cbc4886f775e26f8d5c3a1188ec9f99
 
-PODFILE CHECKSUM: 019bb1baf4cec78f645c90adbf6ebc8d266bcdc9
+PODFILE CHECKSUM: 530cddbc60d6d992be50426a39d7eee17c6c2223
 
 COCOAPODS: 1.16.2

@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp Design System"
+  short_description: "Luma UI tokens, components, animation, visual polish"
+  default_prompt: "Use $superapp-design-system to create or update UIKit UI components in SuperApp_PQ using Luma DesignSystem tokens."

@@ -60,3 +60,14 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+# Build and Log artifacts
+build_derived/
+*.log
+build_log*.txt
+*build_settings.txt
+settings.txt
+swift_compile_error.txt
+xc_errors.txt
+xc_strings.txt
+*.xcresult

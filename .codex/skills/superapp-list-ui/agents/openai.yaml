@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp List UI"
+  short_description: "TableView, CollectionView, cells, compositional layout"
+  default_prompt: "Use $superapp-list-ui to build or update list-based screens in SuperApp_PQ."

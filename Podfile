@@ -14,6 +14,9 @@ def my_pods
   # MARK: - Layout
   pod 'SnapKit', '~> 5.7'
 
+  # MARK: - Maps
+  pod 'GoogleMaps'
+
   # MARK: - Code Generation
   pod 'SwiftGen', '~> 6.6'
 end

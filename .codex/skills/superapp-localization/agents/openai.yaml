@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp Localization"
+  short_description: "SwiftGen, L10n keys, runtime language switching"
+  default_prompt: "Use $superapp-localization to add or update localization keys in SuperApp_PQ."

@@ -111,7 +111,7 @@ final class StateView: UIView {
         subtitle: String = ""
     ) -> StateView {
         let v = StateView()
-        v.setIcon(UIImage(systemName: "tray"))
+        v.setIcon(AppIcon.tray.image)
         v.configure(title: title, message: subtitle)
         return v
     }
@@ -119,7 +119,7 @@ final class StateView: UIView {
     /// Error state: warning icon + retry button.
     static func error(onRetry: @escaping () -> Void) -> StateView {
         let v = StateView()
-        v.setIcon(UIImage(systemName: "exclamationmark.triangle"), tintColor: AppColor.warning)
+        v.setIcon(AppIcon.warningTriangle.image, tintColor: AppColor.warning)
         v.configure(title: "Đã xảy ra lỗi", message: "Vui lòng thử lại.")
         v.setCTA(title: "Thử lại", action: onRetry)
         return v
@@ -128,7 +128,7 @@ final class StateView: UIView {
     /// No internet state: wifi-slash icon + retry button.
     static func noInternet(onRetry: @escaping () -> Void) -> StateView {
         let v = StateView()
-        v.setIcon(UIImage(systemName: "wifi.slash"), tintColor: AppColor.textSecondary)
+        v.setIcon(AppIcon.wifiSlash.image, tintColor: AppColor.textSecondary)
         v.configure(title: "Không có kết nối mạng", message: "Kiểm tra kết nối và thử lại.")
         v.setCTA(title: "Thử lại", action: onRetry)
         return v

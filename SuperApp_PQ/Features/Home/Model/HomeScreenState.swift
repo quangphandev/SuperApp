@@ -30,7 +30,7 @@ struct HomeStateContent: Equatable {
     let eyebrow: String
     let title: String
     let message: String
-    let iconSystemName: String
+    let icon: AppIcon
     let accent: HomeStateAccent
     let cardTitle: String
     let cardMessage: String

@@ -94,12 +94,12 @@ final class SuperApp_PQTests: XCTestCase {
     }
 
     func testHomeVMEmitsConfiguredInitialState() throws {
-        let viewModel = HomeVM(
+        let viewModel = HomeViewModel(
             contentProvider: LocalizedHomeContentProvider(),
             stateContentProvider: LocalizedHomeStateContentProvider(),
             initialState: .empty
         )
-        let input = HomeVM.Input(
+        let input = HomeViewModel.Input(
             exploreTap: .empty(),
             debugTap: .empty(),
             stateAction: .empty()

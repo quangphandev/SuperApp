@@ -1,0 +1,4 @@
+interface:
+  display_name: "SuperApp Network"
+  short_description: "APIEndpoint, Repository, UseCase wiring"
+  default_prompt: "Use $superapp-network to add a new API endpoint, repository, use case, or network call in SuperApp_PQ."
